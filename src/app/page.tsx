@@ -40,7 +40,9 @@ export default function Home() {
         </div>
         <div className="flex items-center">
           <span className="text-[#8284FA] font-bold">Completed</span>{" "}
-          <Badge>{getCompletedTaskCount()}</Badge>
+          <Badge>
+            {getCompletedTaskCount()} of {getTaskCount()}
+          </Badge>
         </div>
       </div>
       <br />

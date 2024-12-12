@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 
-import { TaskList as TaskListType } from "../../types/models";
+import { TaskList as TaskListType } from "@/types/models";
 
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";

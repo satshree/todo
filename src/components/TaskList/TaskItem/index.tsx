@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Task } from "../../../../types/models";
+import { Task } from "@/types/models";
 
 import IconButton from "@/components/Button/IconButton";
 

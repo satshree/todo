@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
 import TaskItem from "./TaskItem";
-import { Task, TaskList as TaskListType } from "../../../types/models";
+import { Task, TaskList as TaskListType } from "@/types/models";
 
 import Clipboard from "@/assets/icons/Clipboard.svg";
 

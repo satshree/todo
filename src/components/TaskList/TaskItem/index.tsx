@@ -7,6 +7,7 @@ import IconButton from "@/components/Button/IconButton";
 import Check from "@/assets/icons/check.svg";
 import Trash from "@/assets/icons/trash.svg";
 import Checked from "@/assets/icons/checked.svg";
+import { useRouter } from "next/navigation";
 
 interface TaskItemProps {
   task: Task;
@@ -15,9 +16,14 @@ interface TaskItemProps {
 }
 
 export default function TaskItem(props: TaskItemProps) {
+  const router = useRouter();
+
   const [task, setTask] = useState(props.task);
 
   useEffect(() => setTask(props.task), [props.task]);
+
+  const handleRoute = () =>
+    router.push(`/form?task=${encodeURIComponent(JSON.stringify(task))}`);
 
   return (
     <div className="block w-full h-[70px] border border-[#333333] mb-4 bg-[#262626] rounded-lg">
@@ -29,9 +35,10 @@ export default function TaskItem(props: TaskItemProps) {
             onClick={() => props.tap(task)}
           />
           <div
-            className={`ml-4 ${
+            className={`hover:cursor-pointer ml-4 ${
               task.completed ? "line-through text-gray-500" : "text-inherit"
             }`}
+            onClick={handleRoute}
           >
             {task.title}
           </div>

@@ -28,7 +28,9 @@ export default function RootLayout({
           <div className={styles["top-section"]}>
             <Header />
           </div>
-          <div className={styles["body-section"]}>{children}</div>
+          <div className={styles["body-section"]}>
+            <div className={styles.app}>{children}</div>
+          </div>
         </div>
       </body>
     </html>

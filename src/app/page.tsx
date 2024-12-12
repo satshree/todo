@@ -1,21 +1,32 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+
+import { fetchTaskList } from "@/api";
 
 import { TaskList as TaskListType } from "@/types/models";
 
 import Badge from "@/components/Badge";
 import Button from "@/components/Button";
+import TaskList from "@/components/TaskList";
 
 import Plus from "@/assets/icons/plus-icon.svg";
-import TaskList from "@/components/TaskList";
 
 export default function Home() {
   const router = useRouter();
 
-  const [taskList, setTaskList] = useState<TaskListType>(dummyData);
+  const [taskList, setTaskList] = useState<TaskListType>([]);
+
+  useEffect(() => {
+    const fetchList = async () => {
+      const tasks = await fetchTaskList();
+      setTaskList(tasks);
+    };
+
+    fetchList();
+  }, []);
 
   const getTaskCount = () => taskList.length;
   const getCompletedTaskCount = () =>
@@ -54,21 +65,21 @@ export default function Home() {
   );
 }
 
-const dummyData: TaskListType = [
-  {
-    id: "1",
-    title:
-      "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
-    color: "#FF3B30",
-    completed: false,
-    timestamp: 0,
-  },
-  {
-    id: "2",
-    title:
-      "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
-    color: "#FFCC00",
-    completed: true,
-    timestamp: 0,
-  },
-];
+// const dummyData: TaskListType = [
+//   {
+//     id: "1",
+//     title:
+//       "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
+//     color: "#FF3B30",
+//     completed: false,
+//     timestamp: 0,
+//   },
+//   {
+//     id: "2",
+//     title:
+//       "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
+//     color: "#FFCC00",
+//     completed: true,
+//     timestamp: 0,
+//   },
+// ];

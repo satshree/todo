@@ -3,6 +3,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
+import { addTask, updateTask } from "@/api";
+
 import { Task } from "@/types/models";
 
 import IconButton from "@/components/Button/IconButton";
@@ -13,6 +15,8 @@ import ArrowLeft from "@/assets/icons/arrow-left.svg";
 export default function FormPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  const [loading, setLoading] = useState(false);
 
   const [edit, setEdit] = useState(false);
   const [task, setTask] = useState(dummyTaskData);
@@ -28,9 +32,37 @@ export default function FormPage() {
     }
   }, []);
 
-  const handleBackRoute = () => router.push("/");
+  const handleBackRoute = () => {
+    if (edit) {
+      const confirm = window.confirm("Discard changes?");
+      if (!confirm) return;
+    }
 
-  const handleSubmit = (task: Task) => {};
+    router.push("/");
+  };
+
+  const handleSubmit = async (task: Task) => {
+    try {
+      setLoading(true);
+
+      if (edit) {
+        await updateTask(task.id, task.title, task.color, task.completed);
+
+        setLoading(false);
+        window.alert("Task updated.");
+        router.push("/");
+      } else {
+        await addTask(task.title, task.color);
+
+        setLoading(false);
+        router.push("/");
+      }
+    } catch (err) {
+      setLoading(false);
+      console.log("ERROR", err);
+      window.alert("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <div

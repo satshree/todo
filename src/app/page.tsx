@@ -14,7 +14,7 @@ import Plus from "@/assets/icons/plus-icon.svg";
 import TaskList from "@/components/TaskList";
 
 export default function Home() {
-  const [taskList, setTaskList] = useState<TaskListType>([]);
+  const [taskList, setTaskList] = useState<TaskListType>(dummyData);
 
   const getTaskCount = () => taskList.length;
   const getCompletedTaskCount = () =>
@@ -54,16 +54,18 @@ export default function Home() {
 const dummyData: TaskListType = [
   {
     id: "1",
-    title: "Test",
+    title:
+      "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
     color: "#fff",
     completed: false,
     timestamp: 0,
   },
   {
     id: "2",
-    title: "Test",
+    title:
+      "Integer urna interdum massa libero auctor neque turpis turpis semper. Duis vel sed fames integer.",
     color: "#fff",
-    completed: false,
+    completed: true,
     timestamp: 0,
   },
 ];

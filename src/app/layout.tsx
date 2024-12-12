@@ -25,7 +25,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} antialiased`}>
         <div className={styles["app-container"]}>
-          <div className={styles["top-section"]}></div>
+          <div className={styles["top-section"]}>
+            <Header />
+          </div>
           <div className={styles["body-section"]}>{children}</div>
         </div>
       </body>

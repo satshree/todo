@@ -88,7 +88,7 @@ export default function FormPage() {
 const dummyTaskData: Task = {
   id: "",
   title: "",
-  color: "",
+  color: "#FF3B30",
   completed: false,
   timestamp: 0,
 };

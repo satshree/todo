@@ -5,6 +5,7 @@ import React from "react";
 interface ButtonProps {
   children: React.ReactNode;
   onClick: () => void;
+  loading?: boolean;
   typeSubmit?: boolean;
   noBackground?: boolean;
   width?: number | string;
@@ -26,7 +27,7 @@ export default function Button(props: ButtonProps) {
       }}
       onClick={handleClick}
     >
-      {props.children}
+      {props.loading ? <>Please wait ...</> : props.children}
     </button>
   );
 }

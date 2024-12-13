@@ -74,7 +74,12 @@ export default function FormPage() {
         <IconButton icon={ArrowLeft.src} onClick={handleBackRoute} />
       </div>
       <div style={{ marginTop: "2rem" }}>
-        <TaskForm edit={edit} task={task} handleSubmit={handleSubmit} />
+        <TaskForm
+          edit={edit}
+          task={task}
+          handleSubmit={handleSubmit}
+          loading={loading}
+        />
       </div>
     </div>
   );

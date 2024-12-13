@@ -11,6 +11,7 @@ import Check from "@/assets/icons/mdi_check-bold.svg";
 interface TaskFormProps {
   task: Task;
   edit: boolean;
+  loading?: boolean;
   handleSubmit: (task: Task) => void;
 }
 
@@ -76,7 +77,7 @@ export default function TaskForm(props: TaskFormProps) {
         <br />
         <br />
         <div className="w-full">
-          <Button typeSubmit={true} onClick={() => {}}>
+          <Button typeSubmit={true} onClick={() => {}} loading={props.loading}>
             <div className="w-full flex items-center justify-center">
               {props.edit ? (
                 <div className="flex items-center">

@@ -49,7 +49,7 @@ export default function TaskList(props: TaskListProps) {
           <div className="border-t border-t-[#333333] rounded-t-lg flex items-center justify-center flex-col ml-auto mr-auto w-full">
             <Image src={Clipboard.src} width={50} height={50} alt="Empty" />
             <div className="text-[16px] text-[#808080] font-bold mt-2">
-              You don't have any tasks registered yet.
+              You don&#39;t have any tasks registered yet.
             </div>
             <div className="text-[16px] text-[#808080] mt-4">
               Create tasks and organize your to-do items.

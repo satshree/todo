@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 
 import { addTask, updateTask } from "@/api";
@@ -12,7 +12,7 @@ import TaskForm from "@/components/TaskForm";
 
 import ArrowLeft from "@/assets/icons/arrow-left.svg";
 
-export default function FormPage() {
+function PageComponent() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -82,6 +82,16 @@ export default function FormPage() {
         />
       </div>
     </div>
+  );
+}
+
+export default function FormPage() {
+  return (
+    <>
+      <Suspense>
+        <PageComponent />
+      </Suspense>
+    </>
   );
 }
 

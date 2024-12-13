@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 
+import { deleteTask, updateTask } from "@/api";
+
 import TaskItem from "./TaskItem";
 import { Task, TaskList as TaskListType } from "@/types/models";
 
@@ -8,6 +10,7 @@ import Clipboard from "@/assets/icons/Clipboard.svg";
 
 interface TaskListProps {
   taskList: TaskListType;
+  fetch: () => void;
 }
 
 export default function TaskList(props: TaskListProps) {
@@ -15,8 +18,29 @@ export default function TaskList(props: TaskListProps) {
 
   useEffect(() => setTaskList(props.taskList), [props.taskList]);
 
-  const handleTap = (task: Task) => {};
-  const handleDelete = (task: Task) => {};
+  const handleTap = async (task: Task) => {
+    try {
+      await updateTask(task.id, task.title, task.color, !task.completed);
+      props.fetch();
+    } catch (err) {
+      console.log("ERROR", err);
+      window.alert("Something went wrong. Please try again.");
+    }
+  };
+
+  const handleDelete = async (task: Task) => {
+    const resp = window.confirm("Are you sure to delete this task?");
+    if (!resp) return;
+
+    try {
+      await deleteTask(task.id);
+      window.alert("Task deleted.");
+      props.fetch();
+    } catch (err) {
+      console.log("ERROR", err);
+      window.alert("Something went wrong. Please try again.");
+    }
+  };
 
   return (
     <div className="flex min-h-[250px]">

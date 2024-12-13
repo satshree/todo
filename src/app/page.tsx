@@ -20,13 +20,13 @@ export default function Home() {
   const [taskList, setTaskList] = useState<TaskListType>([]);
 
   useEffect(() => {
-    const fetchList = async () => {
-      const tasks = await fetchTaskList();
-      setTaskList(tasks);
-    };
-
     fetchList();
   }, []);
+
+  const fetchList = async () => {
+    const tasks = await fetchTaskList();
+    setTaskList(tasks);
+  };
 
   const getTaskCount = () => taskList.length;
   const getCompletedTaskCount = () =>
@@ -59,7 +59,7 @@ export default function Home() {
       <br />
       <br />
       <div>
-        <TaskList taskList={taskList} />
+        <TaskList taskList={taskList} fetch={fetchList} />
       </div>
     </>
   );

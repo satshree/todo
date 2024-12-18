@@ -18,13 +18,14 @@ export default function Home() {
   const router = useRouter();
 
   const [taskList, setTaskList] = useState<TaskListType>([]);
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
     fetchList();
   }, []);
 
   const fetchList = async () => {
-    const tasks = await fetchTaskList();
+    const tasks = await fetchTaskList(query);
     setTaskList(tasks);
   };
 
@@ -44,6 +45,15 @@ export default function Home() {
           </div>
         </Button>
       </div>
+      <div>
+        <input
+          className="text-black w-full"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <button onClick={fetchList}>Search</button>
+      </div>
+      <br />
       <div className="flex items-center justify-between">
         <div className="flex items-center">
           <span className="text-[#4EA8DE] font-bold">Tasks</span>{" "}

@@ -20,10 +20,12 @@ export default function TaskForm(props: TaskFormProps) {
 
   const [title, setTitle] = useState(props.task.title);
   const [color, setColor] = useState(props.task.color);
+  const [level, setLevel] = useState(props.task.level || 1);
 
   useEffect(() => {
     setTitle(props.task.title);
     setColor(props.task.color);
+    setLevel(props.task.level);
   }, [props.task]);
 
   const handleTitleChange = (value: string) => {
@@ -39,7 +41,8 @@ export default function TaskForm(props: TaskFormProps) {
         ref={formRef}
         onSubmit={(e) => {
           e.preventDefault();
-          props.handleSubmit({ ...props.task, title, color });
+          console.log("HERE", level, { ...props.task, title, color, level });
+          props.handleSubmit({ ...props.task, title, color, level });
         }}
       >
         <div className="w-full">
@@ -74,6 +77,18 @@ export default function TaskForm(props: TaskFormProps) {
             </div>
           ))}
         </div>
+        <br />
+        <select
+          value={level}
+          onChange={(e) => {
+            setLevel(Number(e.target.value));
+          }}
+          className="text-black"
+        >
+          <option value={1}>Low</option>
+          <option value={2}>Medium</option>
+          <option value={3}>High</option>
+        </select>
         <br />
         <br />
         <div className="w-full">

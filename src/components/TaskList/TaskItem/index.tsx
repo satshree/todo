@@ -25,6 +25,18 @@ export default function TaskItem(props: TaskItemProps) {
   const handleRoute = () =>
     router.push(`/form?task=${encodeURIComponent(JSON.stringify(task))}`);
 
+  const parseLevel = () => {
+    if (task.level === 1) {
+      return "Low";
+    } else if (task.level === 2) {
+      return "Medium";
+    } else if (task.level === 3) {
+      return "High";
+    }
+
+    return "🤷🏻‍♂️";
+  };
+
   return (
     <div className="block w-full h-[70px] border border-[#333333] mb-4 bg-[#262626] rounded-lg">
       <div className="h-full w-full flex p-6 items-center justify-between">
@@ -44,6 +56,7 @@ export default function TaskItem(props: TaskItemProps) {
           </div>
         </div>
         <div className="ml-4">
+          <span>{parseLevel()}</span>
           <IconButton
             icon={Trash.src}
             size={16}

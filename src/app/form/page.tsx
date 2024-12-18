@@ -43,16 +43,23 @@ function PageComponent() {
 
   const handleSubmit = async (task: Task) => {
     try {
+      console.log("t", task);
       setLoading(true);
 
       if (edit) {
-        await updateTask(task.id, task.title, task.color, task.completed);
+        await updateTask(
+          task.id,
+          task.title,
+          task.color,
+          task.level,
+          task.completed
+        );
 
         setLoading(false);
         window.alert("Task updated.");
         router.push("/");
       } else {
-        await addTask(task.title, task.color);
+        await addTask(task.title, task.color, task.level);
 
         setLoading(false);
         router.push("/");
@@ -99,6 +106,7 @@ const dummyTaskData: Task = {
   id: "",
   title: "",
   color: "#FF3B30",
+  level: 1,
   completed: false,
   timestamp: 0,
 };
